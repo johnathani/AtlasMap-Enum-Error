@@ -1,5 +1,6 @@
 package com.accenture.atlasmap.route;
 
+import java.io.File;
 import java.net.URL;
 
 import com.accenture.atlasmap.dict.Destination;
@@ -80,9 +81,16 @@ public class AtlasMapRoute extends RouteBuilder {
                e.getIn().setBody(src);
             }).process(e -> {
                try {
-                  URL url = Thread.currentThread().getContextClassLoader().getResource("atlasmap-mapping.adm");
                   AtlasContextFactory factory = DefaultAtlasContextFactory.getInstance();
-                  AtlasContext context = factory.createContext(url.toURI());
+                  AtlasContext context;
+                  if (null != System.getProperty("adm-location")) {
+                     File file = new File(System.getProperty("adm-location"));
+                     context = factory.createContext(file);
+                  } else {
+                     URL url = Thread.currentThread().getContextClassLoader().getResource("atlasmap-mapping.adm");
+                     context = factory.createContext(url.toURI());
+                  }                  
+
                   AtlasSession session = context.createSession();
 
                   Object src = e.getIn().getBody();
