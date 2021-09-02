@@ -21,7 +21,7 @@
 			<groupId>com.accenture.atlasmap</groupId>
 			<artifactId>dictionary</artifactId>
 			<version>${project.version}</version>
-		 </dependency>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,6 +79,12 @@
 			<version>${camel.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.atlasmap</groupId>
+			<artifactId>atlas-java-core</artifactId>
+			<version>2.3.0-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Override Atlas Map to force using 2.2.3 -->
 		<!--ependency>
 			<groupId>io.atlasmap</groupId>
@@ -125,25 +131,33 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-      <!-- Copy atlasmap ADM and embedd as resource -->
-      <plugin>
-			<groupId>com.coderplus.maven.plugins</groupId>
-			<artifactId>copy-rename-maven-plugin</artifactId>
-			<version>1.0.1</version>
-			<executions>
-			  <execution>
-				 <id>copy-file</id>
-				 <phase>generate-sources</phase>
-				 <goals>
-					<goal>copy</goal>
-				 </goals>
-				 <configuration>
-					<sourceFile>${basedir}/../atlasmap/atlasmap-mapping.adm</sourceFile>
-					<destinationFile>${basedir}/target/classes/atlasmap-mapping.adm</destinationFile>
-				 </configuration>
-			  </execution>
-			</executions>
-		 </plugin>
+			<!-- Copy atlasmap ADM and embedd as resource -->
+			<plugin>
+				<groupId>com.coderplus.maven.plugins</groupId>
+				<artifactId>copy-rename-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<executions>
+					<execution>
+						<id>copy-file</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<fileSets>
+								<fileSet>
+									<sourceFile>${basedir}/../atlasmap/atlasmap-mapping.adm</sourceFile>
+									<destinationFile>${basedir}/target/classes/atlasmap-mapping.adm</destinationFile>
+								</fileSet>
+								<fileSet>
+									<sourceFile>${basedir}/../atlasmap/atlasmap-mapping-list.adm</sourceFile>
+									<destinationFile>${basedir}/target/classes/atlasmap-mapping-list.adm</destinationFile>
+								</fileSet>
+							</fileSets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -158,7 +172,7 @@
 				</executions>
 			</plugin>
 
- 
+
 		</plugins>
 	</build>
 
