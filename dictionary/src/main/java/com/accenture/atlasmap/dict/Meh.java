@@ -23,10 +23,16 @@ public class Meh {
         this.sample = sample;
     }
 
-    public boolean equals(Meh src) {
-        if (null == src)
+    @Override
+    public boolean equals(Object srcO) {        
+        if (null == srcO || !(srcO instanceof Meh))
             return false;
 
-        return Objects.equals(src.getMyField(), myField) && Objects.equals(src.getSample(), sample);
+        Meh src = (Meh)srcO;
+
+        boolean a = Objects.equals(src.getSample(), sample);
+        boolean b = Objects.equals(src.getMyField(), myField);
+
+        return a && b;
     }    
 }

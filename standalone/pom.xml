@@ -64,6 +64,10 @@
                   <sourceFile>${basedir}/../atlasmap/atlasmap-mapping-list.adm</sourceFile>
                   <destinationFile>${basedir}/target/classes/atlasmap-mapping-list.adm</destinationFile>
                 </fileSet>
+                <fileSet>
+                  <sourceFile>${basedir}/../atlasmap/atlasmap-mapping-obj.adm</sourceFile>
+                  <destinationFile>${basedir}/target/classes/atlasmap-mapping-obj.adm</destinationFile>
+                </fileSet>
               </fileSets>
             </configuration>
           </execution>
